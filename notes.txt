@@ -1,0 +1,64 @@
+user side:
+
+Menu - and retrieve user int for menu selection
+
+viewing contacts - read and print
+
+addcontact - appending to list
+
+searching - read, .equals() to find, then print
+
+delete contact - read, .equals() to find, then overwrite the file without entry
+
+exit - just leave primary function
+
+------
+
+save file after every change
+
+------
+
+retrivial method for loading file to list -
+ do this before anything else - try catch incase file can't load
+
+
+
+
+SCanner -
+menus section
+
+contact selection
+
+contact addition
+----- name + Number
+
+
+readAllContacts - return List<> contacts
+
+showmenu - return int userInput
+
+processInput - return List<> contacts
+
+viewAllContacts - return void
+
+addContact - return List<> newContacts
+
+searchContacts - return void
+
+deleteContact - return List<> newContacts
+
+
+
+pubic statid void switcher(int userInput) {
+	switch
+}
+
+
+
+do {
+int userInput = showmenu();
+
+
+
+
+} while (userInput != 5)
