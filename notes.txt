@@ -24,7 +24,7 @@ retrivial method for loading file to list -
 
 
 
-SCanner -
+Scanner -
 menus section
 
 contact selection
@@ -37,7 +37,7 @@ readAllContacts - return List<> contacts
 
 showmenu - return int userInput
 
-processInput - return List<> contacts
+switchCase - return List<> contacts
 
 viewAllContacts - return void
 
@@ -49,16 +49,17 @@ deleteContact - return List<> newContacts
 
 
 
-pubic statid void switcher(int userInput) {
-	switch
-}
-
-
-
-do {
-int userInput = showmenu();
 
 
 
 
-} while (userInput != 5)
+TO DO NEXT:
+Search Contacts by Name
+Add Contacts
+Delete Contacts
+Rename Contact
+Overwrite Full contact
+
+adding phone digit lengths
+Formatting - displaying the numbers with (-)
+View Contacts by area code
