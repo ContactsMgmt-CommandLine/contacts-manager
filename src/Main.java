@@ -1,9 +1,11 @@
 import java.io.IOException;
 import java.nio.file.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class Main {
+    private static Scanner sc = new Scanner(System.in);
     static int userInput = 0;
 
     public static void main(String[] args) {
@@ -49,11 +51,11 @@ public class Main {
         System.out.println("5 - Exit");
         System.out.println("Enter Option: [1, 2, 3, 4, 5]");
 
-        Scanner sc = new Scanner(System.in);
         System.out.println();
 
         if (sc.hasNextInt()) {
             userInput = sc.nextInt();
+            sc.nextLine();
         } else {
             System.out.println("Please enter a number from the options below");
             return showMenu();
@@ -73,9 +75,13 @@ public class Main {
             case 1:
                 readAllContacts();
                 break;
-//                case 2:
-//                    addNewContact();
-//                    break;
+            case 2:
+                try {
+                    addNewContact();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                break;
 //                case 3:
 //
 //                    break;
@@ -83,6 +89,19 @@ public class Main {
 //
 //                    break;
         }
+    }
+
+    public static void addNewContact() throws IOException {
+        String directory = "src";
+        String filename = "contacts.txt";
+        Path dataDirectory = Paths.get(directory);
+        Path dataFile = Paths.get(directory, filename);
+
+        ArrayList<String> contacts = new ArrayList<>();
+        System.out.println("Enter the contact's name and number:");
+        contacts.add(sc.nextLine());
+
+        Files.write(dataFile, contacts, StandardOpenOption.APPEND);
     }
 
 }
