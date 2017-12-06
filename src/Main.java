@@ -77,9 +77,9 @@ public class Main {
                     e.printStackTrace();
                 }
                 break;
-//                case 3:
-//
-//                    break;
+                case 3:
+                    searchForContact(currentContacts);
+                    break;
             case 4:
                 deleteContact(currentContacts);
                 break;
@@ -125,6 +125,28 @@ public class Main {
         System.out.println("New Contact: \"" + contacts.get(0) + "\" Added");
         System.out.println("Main Menu");
         System.out.println("---------------");
+    }
+
+    public static void searchForContact(List<String> contactsList) {
+        System.out.println("Try searching for a contact in your directory");
+        System.out.println("eg. [Po], [210-222-2222]");
+        int variable = 0;
+        String userInput = sc.nextLine();
+        for (String contact : contactsList) {
+            if (contact.toLowerCase().contains(userInput.toLowerCase())) {
+                variable++;
+                System.out.println();
+                System.out.println(contact);
+                System.out.println();
+                System.out.println("Main Menu");
+                System.out.println("---------------");
+            }
+        }
+        if (variable == 0) {
+            System.out.println("Contact not found in directory");
+            System.out.println();
+            searchForContact(contactsList);
+        }
     }
 
     public static void deleteContact(List<String> contactsList) {
