@@ -24,7 +24,7 @@ retrivial method for loading file to list -
 
 
 
-SCanner -
+Scanner -
 menus section
 
 contact selection
@@ -49,7 +49,7 @@ deleteContact - return List<> newContacts
 
 
 
-pubic statid void switcher(int userInput) {
+public static void switcher(int userInput) {
 	switch
 }
 
