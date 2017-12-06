@@ -49,13 +49,17 @@ deleteContact - return List<> newContacts
 
 
 
+- iterate over the contact strings/objects in List (pulling from currentContactList)
+- comparison conditional over current element and the userSearchInput
+- ignorecase and parse, search substring
 
+steve cisler 123456
 
+SEARCH: ___cis___
+userSearchInput
 
 TO DO NEXT:
-Search Contacts by Name
-Add Contacts
-Delete Contacts
+Search Name
 Rename Contact
 Overwrite Full contact
 
