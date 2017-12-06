@@ -52,7 +52,6 @@ deleteContact - return List<> newContacts
 
 
 
-
 TO DO NEXT:
 Search Contacts by Name
 Add Contacts

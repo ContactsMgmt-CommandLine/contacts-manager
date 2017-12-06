@@ -1,9 +1,11 @@
 import java.io.IOException;
 import java.nio.file.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class Main {
+    private static Scanner sc = new Scanner(System.in);
     static int userInput = 0;
 
     public static void main(String[] args) {
@@ -12,6 +14,7 @@ public class Main {
     do {
 
         userInput = showMenu();
+
 
     } while (userInput != 5);
 
@@ -49,11 +52,11 @@ public class Main {
         System.out.println("5 - Exit");
         System.out.println("Enter Option: [1, 2, 3, 4, 5]");
 
-        Scanner sc = new Scanner(System.in);
         System.out.println();
 
         if (sc.hasNextInt()) {
             userInput = sc.nextInt();
+            sc.nextLine();
         } else {
             System.out.println("Please enter a number from the options below");
             return showMenu();
@@ -63,26 +66,97 @@ public class Main {
             System.out.println("Please enter a number from the options below");
             return showMenu();
         } else {
-            userInputSwitchCase(userInput);
+            List<String> currentList = getCurrentContacts();
+            userInputSwitchCase(userInput, currentList);
             return userInput;
         }
     }
 
-    public static void userInputSwitchCase(int userInput) {
+    public static void userInputSwitchCase(int userInput, List<String> currentContacts) {
         switch (userInput) {
             case 1:
                 readAllContacts();
                 break;
-//                case 2:
-//                    addNewContact();
-//                    break;
+            case 2:
+                try {
+                    addNewContact();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                break;
 //                case 3:
 //
 //                    break;
-//                case 4:
-//
-//                    break;
+                case 4:
+                    deleteContact(currentContacts);
+                    break;
         }
+    }
+
+    public static void addNewContact() throws IOException {
+        String directory = "src";
+        String filename = "contacts.txt";
+        Path dataDirectory = Paths.get(directory);
+        Path dataFile = Paths.get(directory, filename);
+
+        ArrayList<String> contacts = new ArrayList<>();
+        System.out.println("Enter the contact's name and number:");
+        contacts.add(sc.nextLine());
+
+        Files.write(dataFile, contacts, StandardOpenOption.APPEND);
+    }
+    public static List<String> getCurrentContacts() {
+        String directory = "src";
+        String filename = "contacts.txt";
+
+        Path dataDirectory = Paths.get(directory);
+        Path dataFile = Paths.get(directory, filename);
+        List<String> contacts;
+
+            try {
+            contacts = Files.readAllLines(dataFile);
+                    return contacts;
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+        return getCurrentContacts();
+    }
+
+    public static void deleteContact(List<String> contactsList) {
+        // THIS IS MESSY, CAN BE CLEANED UP AND ALTERED LATER
+        System.out.println("Which contact would you like to delete?");
+        for (int i = 0; i < contactsList.size(); i++) {
+            System.out.println((i + 1) + ". " + contactsList.get(i));
+        }
+        System.out.println("ENTER NUMBER - eg. [1, 2, 5...]");
+        int deletionChoice = 0;
+        ArrayList<String> alteredList = new ArrayList<>();
+        if (sc.hasNextInt()) {
+            deletionChoice = sc.nextInt();
+            sc.nextLine();
+        } else {
+            System.out.println("Please enter a valid contact number.");
+            deleteContact(contactsList);
+        }
+
+        if ( 1 > userInput || userInput > contactsList.size() ) {
+            System.out.println("Please enter a valid contact number");
+            deleteContact(contactsList);
+        } else {
+            contactsList.remove(deletionChoice - 1);
+            String directory = "src";
+            String filename = "contacts.txt";
+            Path dataDirectory = Paths.get(directory);
+            Path dataFile = Paths.get(directory, filename);
+            try {
+                Files.write(dataFile, contactsList);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+
+
     }
 
 }
